@@ -66,7 +66,7 @@ config = {
     'windows': {  # Windows游戏请填写此设置
         'exe': ['StarRail.exe'],
         # 'hwnd_class': 'UnrealWindow', #增加重名检查准确度
-        'interaction': 'Genshin', # Genshin:某些操作可以后台, 部分游戏支持 PostMessage:可后台点击, 极少游戏支持 ForegroundPostMessage:前台使用PostMessage Pynput/PyDirect:仅支持前台使用
+        'interaction': 'Pynput', # Genshin:某些操作可以后台, 部分游戏支持 PostMessage:可后台点击, 极少游戏支持 ForegroundPostMessage:前台使用PostMessage Pynput/PyDirect:仅支持前台使用
         'capture_method': ['WGC', 'BitBlt_RenderFull'],  # Windows版本支持的话, 优先使用WGC, 否则使用BitBlt_Full. 支持的capture有 BitBlt, WGC, BitBlt_RenderFull, DXGI
         'check_hdr': True, #当用户开启AutoHDR时候提示用户, 但不禁止使用
         'force_no_hdr': False, #True=当用户开启AutoHDR时候禁止使用
@@ -97,7 +97,7 @@ config = {
             }
         },
     'screenshots_folder': "screenshots", #截图存放目录, 每次重新启动会清空目录
-    'gui_title': 'ok-script-boilerplate',  #窗口名
+    'gui_title': '天下2经典版自动脚本',  #窗口名
     'template_matching': { # 可选, 如使用OpenCV的模板匹配
         'coco_feature_json': os.path.join('assets', 'result.json'), #coco格式标记, 需要png图片, 在debug模式运行后, 会对进行切图仅保留被标记部分以减少图片大小
         'default_horizontal_variance': 0.002, #默认x偏移, 查找不传box的时候, 会根据coco坐标, match偏移box内的
@@ -107,16 +107,23 @@ config = {
     'version': version, #版本
     'my_app': ['src.globals', 'Globals'], #可选. 全局单例对象, 可以存放加载的模型, 使用og.my_app调用
     'onetime_tasks': [  # 用户点击触发的任务
-        ["src.tasks.MyOneTimeTask", "MyOneTimeTask"],
-        ["src.tasks.MyOneTimeWithAGroup", "MyOneTimeWithAGroup"],
-        ["src.tasks.MyOneTimeWithAGroup2", "MyOneTimeWithAGroup2"],
-        ["src.tasks.MyOneTimeWithBGroup", "MyOneTimeWithBGroup"],
+        # 师门任务
+        ["src.tasks.ShimenTask", "ShimenTask"],
+        # 游戏任务系统
+        ["src.tasks.GameQuestTask", "GameQuestTask"],
+        ["src.tasks.GatheringTask", "GatheringTask"],
+        ["src.tasks.CombatTask", "CombatTask"],
+        # 原有示例任务
+        # ["src.tasks.MyOneTimeTask", "MyOneTimeTask"],
+        # ["src.tasks.MyOneTimeWithAGroup", "MyOneTimeWithAGroup"],
+        # ["src.tasks.MyOneTimeWithAGroup2", "MyOneTimeWithAGroup2"],
+        # ["src.tasks.MyOneTimeWithBGroup", "MyOneTimeWithBGroup"],
         ["ok", "DiagnosisTask"],
     ],
     'trigger_tasks':[ # 不断执行的触发式任务
-        ["src.tasks.MyTriggerTask", "MyTriggerTask"],
+        # ["src.tasks.MyTriggerTask", "MyTriggerTask"],
     ],
     'custom_tabs': [
-        ['src.ui.MyTab', 'MyTab'], #可选, 自定义UI, 显示在侧边栏
+        # ['src.ui.MyTab', 'MyTab'], #可选, 自定义UI, 显示在侧边栏
     ],
 }
